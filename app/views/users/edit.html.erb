@@ -1,0 +1,34 @@
+<h1>Users#edit</h1>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+        <p class="error"><%= e %></p>
+    <% end %>
+<% end %>
+<div class="edit-profile-wrapper">
+
+  <div class="register-wrapper">
+    <h2>Edit Profile</h2>
+    <form action="/user/<%= @user.id %>" method="post">
+      <input type="hidden" name="_method" value="patch">
+      <%= token_tag nil %>
+      <label>First Name: <input type="text" name="update[first_name]" value="<%= @user.first_name %>"></label>
+      <label>Last Name: <input type="text" name="update[last_name]" value="<%= @user.last_name %>"></label>
+      <label>Email: <input type="text" name="update[email]" value="<%= @user.email %>"></label>
+      <label>City: <input type="text" name="update[city]" value="<%= @user.city %>"></label>
+      <label>State: <%= select_tag "update[state]", options_for_select(us_states, "CA") %></label>
+      <input type="submit" value="Update Account">
+    </form>
+  </div>
+
+
+
+  <div class="delete-wrapper">
+    <form action="/user/<%= @user.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <%= token_tag nil %>
+      <input class='delete-btn' type='submit' value='Delete Account'>
+    </form>
+  </div>
+
+</div>

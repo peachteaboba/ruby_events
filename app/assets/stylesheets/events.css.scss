@@ -1,0 +1,106 @@
+// Place all the styles related to the Events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+a{
+  text-decoration: none;
+}
+
+
+
+.wrapper{
+  outline: 1px dotted red;
+  min-width: 700px;
+  margin: 0 auto;
+  padding: 25px;
+  text-align: center;
+}
+
+
+.event-my-state{
+  //outline: 1px dotted blue;
+  width: 100%;
+  min-height: 200px;
+  margin-bottom: 20px;
+  padding-top: 5px;
+}
+
+.event-other-state{
+  //outline: 1px dotted green;
+  width: 100%;
+  min-height: 200px;
+  padding-top: 5px;
+}
+
+
+.event-wrapper{
+  //width: 49%;
+  border: 1px solid #52D4FF;
+  display: inline-block; vertical-align: top;
+  text-align: right;
+  margin-right: 20px;
+  margin-top: 20px;
+  padding: 45px 200px 45px 200px;
+  border-radius: 20px;
+}
+
+
+.event-wrapper h2{
+  margin-top: 0;
+}
+
+
+
+
+// TABLE STYLES---------------------------
+.ems-table{
+  //outline: 1px dotted red;
+  margin: 0 auto;
+  background-color: #F7F7F7;
+  border-radius: 30px;
+  padding: 25px;
+}
+
+
+.ems-table th {
+  font-size: 1.1em;
+  padding-left: 60px;
+  padding-right: 60px;
+  color: darkcyan;
+}
+
+.ems-table tr {
+
+
+
+
+}
+
+
+
+
+
+.edit-event{
+  display: inline-block; vertical-align: top;
+}
+
+.delete-event{
+  display: inline-block; vertical-align: top;
+}
+
+
+h3 span{
+  color: darkcyan;
+}
+
+h1 span{
+  color: darkcyan;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,23 @@
+// Place all the styles related to the Comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.comment-wrapper{
+  display: block;
+  margin-top: 60px;
+  border: 1px solid mediumpurple;
+  border-radius: 25px;
+  padding-bottom: 20px;
+}
+
+.comment-wrapper textarea{
+  width: 400px;
+  height: 100px;
+}
+
+.show-comments{
+  display: block;
+  margin-top: 10px;
+  border: 1px solid cornflowerblue;
+  border-radius: 25px;
+  padding-bottom: 20px;
+}

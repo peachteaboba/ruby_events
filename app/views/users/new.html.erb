@@ -1,0 +1,45 @@
+<h1>Users#new</h1>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |e| %>
+        <p class="error"><%= e %></p>
+    <% end %>
+<% end %>
+
+
+
+
+<div class="wrapper">
+
+
+  <div class="register-wrapper">
+    <h2>Register</h2>
+    <form action="/register" method="post">
+      <%= token_tag nil %>
+      <label>First Name: <input type="text" name="register[first_name]"></label>
+      <label>Last Name: <input type="text" name="register[last_name]"></label>
+      <label>Email: <input type="text" name="register[email]"></label>
+      <label>City: <input type="text" name="register[city]"></label>
+      <label>State: <%= select_tag "register[state]", options_for_select(us_states, "CA") %></label>
+      <p>*Password must be at least 8 characters</p>
+      <label>Password: <input type="password" name="register[password]"><br></label>
+      <label>Confirm Password: <input type="password" name="register[password_confirmation]"><br></label>
+      <input type="submit" value="Register Account">
+    </form>
+  </div>
+
+  <div class="login-wrapper">
+    <h2>Login</h2>
+    <form action="/login" method="post">
+      <%= token_tag nil %>
+      <label>Email:<input type="text" name="login[email]"></label>
+      <label>Password:<input type="password" name="login[password]"></label>
+      <input type="submit" value="Log In">
+    </form>
+  </div>
+
+
+
+
+
+</div>

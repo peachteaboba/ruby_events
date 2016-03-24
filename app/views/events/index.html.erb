@@ -1,0 +1,222 @@
+<h1>Events#index</h1>
+
+
+<div class="wrapper">
+  <h1>Hello: <%= current_user.first_name %> <%= current_user.last_name %></h1>
+
+
+
+  <div class="event-my-state">
+    <h4>Here are some of the events in your state:</h4>
+
+    <table class="ems-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>City</th>
+        <th>Host</th>
+        <th>Action/Status</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @events_here.each do |event| %>
+          <tr>
+            <td><a href='/events/<%= event.id %>'><%= event.name %> </a></td>
+            <td><%= event.date %></td>
+            <td><%= event.city %></td>
+            <td><%= event.user.first_name %></td>
+            <td>
+
+              <% if current_user.id == event.user.id %>
+                  <div class="edit-event">
+                    <form action='/events/<%= event.id %>/edit' method='get'>
+                      <%= token_tag nil %>
+                      <input class='edit-event-btn' type='submit' value='Edit'>
+                    </form>
+                  </div>
+
+                  <div class="delete-event">
+                    <form action='/events/<%= event.id %>' method='post'>
+                      <input type='hidden' name='_method' value='delete'>
+                      <%= token_tag nil %>
+                      <input class='delete-event-btn' type='submit' value='Delete'>
+                    </form>
+                  </div>
+
+
+
+              <% else %>
+
+
+                  <% if @event_id.include? event.id %>
+
+
+                      <form action='/events/<%= event.id %>/cancel' method='get'>
+                        <%= token_tag nil %>
+                        <input class='join-event-btn' type='submit' value='Unjoin'>
+                      </form>
+
+
+
+
+                  <% else %>
+
+
+                      <form action='/events/<%= event.id %>/join' method='get'>
+                        <%= token_tag nil %>
+                        <input class='join-event-btn' type='submit' value='Join'>
+                      </form>
+
+
+                  <% end %>
+
+              <% end %>
+
+
+
+
+            </td>
+
+
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+  <div class="event-other-state">
+    <h4>Here are some of the events in other states:</h4>
+    <table class="ems-table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>City</th>
+        <th>Host</th>
+        <th>Action/Status</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @events_not_here.each do |event| %>
+          <tr>
+            <td><a href='/events/<%= event.id %>'><%= event.name %> </a></td>
+            <td><%= event.date %></td>
+            <td><%= event.city %></td>
+            <td><%= event.user.first_name %></td>
+            <td>
+
+              <% if current_user.id == event.user.id %>
+                  <div class="edit-event">
+                    <form action='/events/<%= event.id %>/edit' method='get'>
+                      <%= token_tag nil %>
+                      <input class='edit-event-btn' type='submit' value='Edit'>
+                    </form>
+                  </div>
+
+                  <div class="delete-event">
+                    <form action='/events/<%= event.id %>' method='post'>
+                      <input type='hidden' name='_method' value='delete'>
+                      <%= token_tag nil %>
+                      <input class='delete-event-btn' type='submit' value='Delete'>
+                    </form>
+                  </div>
+
+              <% else %>
+
+
+                  <% if @event_id.include? event.id %>
+
+
+                      <form action='/events/<%= event.id %>/cancel' method='get'>
+                        <%= token_tag nil %>
+                        <input class='join-event-btn' type='submit' value='Unjoin'>
+                      </form>
+
+
+
+
+                  <% else %>
+
+
+                      <form action='/events/<%= event.id %>/join' method='get'>
+                        <%= token_tag nil %>
+                        <input class='join-event-btn' type='submit' value='Join'>
+                      </form>
+
+
+                  <% end %>
+
+
+              <% end %>
+
+
+
+
+            </td>
+
+
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+  <div class="event-wrapper">
+
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |e| %>
+            <p class="error"><%= e %></p>
+        <% end %>
+    <% end %>
+
+
+
+
+    <h2>Add Event</h2>
+    <form action="/events/<%= current_user.id %>" method="post">
+      <%= token_tag nil %>
+      <label>Name: <input type="text" name="event[name]"></label>
+      <label>Date: <%= date_field("event", "date") %></label>
+      <label>City: <input type="text" name="event[city]"></label>
+      <label>State: <%= select_tag "event[state]", options_for_select(us_states, "CA") %></label>
+      <input type="submit" value="Add Event">
+    </form>
+  </div>
+
+
+
+
+
+
+
+</div>

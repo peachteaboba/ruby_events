@@ -1,0 +1,30 @@
+<h1>Events#edit</h1>
+
+
+<div class="wrapper">
+  <div class="event-wrapper">
+
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |e| %>
+            <p class="error"><%= e %></p>
+        <% end %>
+    <% end %>
+
+
+
+
+    <h2>Edit Event</h2>
+    <form action="/events/<%= @event.id %>" method="post">
+      <input type='hidden' name='_method' value='patch'>
+      <%= token_tag nil %>
+      <label>Name: <input type="text" name="event[name]" value="<%= @event.name %>"></label>
+      <label>Date: <%= date_field("event", "date") %></label>
+      <label>City: <input type="text" name="event[city]" value="<%= @event.city %>"></label>
+      <label>State: <%= select_tag "event[state]", options_for_select(us_states, @event.state) %></label>
+      <input type="submit" value="Edit Event">
+    </form>
+  </div>
+
+
+
+</div>

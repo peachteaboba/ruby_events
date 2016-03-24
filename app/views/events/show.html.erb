@@ -1,0 +1,76 @@
+<h1>Events#show</h1>
+
+
+<div class="wrapper">
+  <h1>Event Name: <span><%= @event.name %></span></h1>
+
+
+  <h3>Host: <span><%= @event.user.first_name %> <%= @event.user.last_name %></span></h3>
+  <h3>Date: <span><%= @event.date %></span></h3>
+  <h3>Location: <span><%= @event.city %>, <%= @event.state %></span></h3>
+  <h3>People who are joining the event: <span><%= @joined_users.count %></span></h3>
+
+
+
+
+
+  <table class="ems-table">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @joined_users.each do |user| %>
+        <tr>
+          <td><%= user.first_name %> <%= user.last_name %></td>
+          <td><%= user.city %></td>
+          <td><%= user.state %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+
+
+
+
+
+
+  <div class="comment-wrapper">
+
+    <% if flash[:errors] %>
+        <% flash[:errors].each do |e| %>
+            <p class="error"><%= e %></p>
+        <% end %>
+    <% end %>
+
+
+
+
+    <h2>Add Comment</h2>
+    <form action="/comments" method="post">
+      <%= token_tag nil %>
+      <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+      <input type="hidden" name="comment[event_id]" value="<%= @event.id %>">
+      <label><textarea name="comment[comment]"></textarea></label>
+      <input type="submit" value="Add Comment">
+    </form>
+  </div>
+
+
+
+  <div class="show-comments">
+    <h2>Comments:</h2>
+    <% @comments.reverse_each do |c| %>
+        <p><span><%= c.user.first_name %> <%= c.user.last_name %></span> says: <%= c.comment %> ( <%= c.created_at %> )</p>
+    <% end %>
+
+  </div>
+
+
+
+</div>
